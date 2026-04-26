@@ -1,64 +1,231 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>AR Menu Working</title>
+<title>Royal Bite AR Menu</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
+<!-- Model Viewer -->
 <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
+
+<!-- Bootstrap -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
 
 <style>
 body{
-  margin:0;
-  font-family:Arial;
-  background:#111;
-  color:white;
+    background:#0f0f0f;
+    color:white;
+    font-family:Arial;
 }
 
+/* HEADER */
+.header{
+    text-align:center;
+    padding:30px;
+    background:#1a1a1a;
+    border-bottom:2px solid gold;
+}
+.header h1{
+    color:gold;
+}
+
+/* MENU CARD */
 .card{
-  margin:20px;
-  padding:15px;
-  background:#1c1c1c;
-  border-radius:12px;
+    background:#1c1c1c;
+    border:none;
+    border-radius:15px;
+    padding:15px;
+    transition:0.3s;
+}
+.card:hover{
+    transform:scale(1.02);
+    box-shadow:0 0 15px gold;
 }
 
+/* IMAGE */
+.food-img{
+    width:100%;
+    height:160px;
+    object-fit:cover;
+    border-radius:10px;
+}
+
+/* AR VIEWER */
 model-viewer{
-  width:100%;
-  height:350px;
-  background:#000;
+    width:100%;
+    height:300px;
+    background:#000;
+    border-radius:10px;
+}
+
+/* BUTTON */
+.btn-ar{
+    background:gold;
+    font-weight:bold;
+    border:none;
+    width:100%;
 }
 </style>
 </head>
 
 <body>
 
-<h2 style="text-align:center;color:gold;">🍔 AR Restaurant Menu</h2>
+<div class="header">
+    <h1>🍔 Royal Bite AR Menu</h1>
+    <p>View food in real world before ordering</p>
+</div>
 
+<div class="container py-4">
+
+<div class="row g-3">
+
+<!-- ITEM 1 -->
+<div class="col-md-4">
 <div class="card">
-<h3>Burger</h3>
+<h5>Cheese Burger</h5>
+<img class="food-img" src="https://images.unsplash.com/photo-1550547660-d9450f859349">
+<p>Juicy beef + cheese</p>
 
-<model-viewer
-  src="https://modelviewer.dev/shared-assets/models/Astronaut.glb"
-  ar
-  ar-modes="scene-viewer webxr quick-look"
-  camera-controls
-  auto-rotate
-  shadow-intensity="1"
-  exposure="1">
+<model-viewer 
+src="https://modelviewer.dev/shared-assets/models/Astronaut.glb"
+ar
+ar-modes="scene-viewer webxr quick-look"
+camera-controls
+auto-rotate>
 </model-viewer>
+
+<button class="btn btn-ar mt-2">View in AR 📱</button>
+</div>
+</div>
+
+<!-- ITEM 2 -->
+<div class="col-md-4">
+<div class="card">
+<h5>BBQ Pizza</h5>
+<img class="food-img" src="https://images.unsplash.com/photo-1601924582971-b56cbbd4a2c5">
+<p>Loaded chicken pizza</p>
+
+<model-viewer 
+src="https://modelviewer.dev/shared-assets/models/Astronaut.glb"
+ar camera-controls auto-rotate>
+</model-viewer>
+
+<button class="btn btn-ar mt-2">View in AR 📱</button>
+</div>
+</div>
+
+<!-- ITEM 3 -->
+<div class="col-md-4">
+<div class="card">
+<h5>Chicken Biryani</h5>
+<img class="food-img" src="https://images.unsplash.com/photo-1603894584373-5ac82b2ae398">
+<p>Spicy desi rice</p>
+
+<model-viewer 
+src="https://modelviewer.dev/shared-assets/models/Astronaut.glb"
+ar camera-controls auto-rotate>
+</model-viewer>
+
+<button class="btn btn-ar mt-2">View in AR 📱</button>
+</div>
+</div>
+
+<!-- ITEM 4 -->
+<div class="col-md-4">
+<div class="card">
+<h5>Fries</h5>
+<img class="food-img" src="https://images.unsplash.com/photo-1573080496219-bb080dd4f877">
+<p>Crispy golden fries</p>
+
+<model-viewer src="https://modelviewer.dev/shared-assets/models/Astronaut.glb" ar></model-viewer>
+<button class="btn btn-ar mt-2">View in AR 📱</button>
+</div>
+</div>
+
+<!-- ITEM 5 -->
+<div class="col-md-4">
+<div class="card">
+<h5>Chicken Wings</h5>
+<img class="food-img" src="https://images.unsplash.com/photo-1608039829572-78524f79c4c7">
+<p>Spicy wings</p>
+
+<model-viewer src="https://modelviewer.dev/shared-assets/models/Astronaut.glb" ar></model-viewer>
+<button class="btn btn-ar mt-2">View in AR 📱</button>
+</div>
+</div>
+
+<!-- ITEM 6 -->
+<div class="col-md-4">
+<div class="card">
+<h5>Sandwich</h5>
+<img class="food-img" src="https://images.unsplash.com/photo-1550507992-eb63ffee0847">
+<p>Grilled sandwich</p>
+
+<model-viewer src="https://modelviewer.dev/shared-assets/models/Astronaut.glb" ar></model-viewer>
+<button class="btn btn-ar mt-2">View in AR 📱</button>
+</div>
+</div>
+
+<!-- ITEM 7 -->
+<div class="col-md-4">
+<div class="card">
+<h5>Pasta Alfredo</h5>
+<img class="food-img" src="https://images.unsplash.com/photo-1525755662778-989d0524087e">
+<p>Creamy pasta</p>
+
+<model-viewer src="https://modelviewer.dev/shared-assets/models/Astronaut.glb" ar></model-viewer>
+<button class="btn btn-ar mt-2">View in AR 📱</button>
+</div>
+</div>
+
+<!-- ITEM 8 -->
+<div class="col-md-4">
+<div class="card">
+<h5>Chocolate Cake</h5>
+<img class="food-img" src="https://images.unsplash.com/photo-1578985545062-69928b1d9587">
+<p>Sweet dessert</p>
+
+<model-viewer src="https://modelviewer.dev/shared-assets/models/Astronaut.glb" ar></model-viewer>
+<button class="btn btn-ar mt-2">View in AR 📱</button>
+</div>
+</div>
+
+<!-- ITEM 9 -->
+<div class="col-md-4">
+<div class="card">
+<h5>Shawarma</h5>
+<img class="food-img" src="https://images.unsplash.com/photo-1606755962773-d324e1a13086">
+<p>Middle eastern wrap</p>
+
+<model-viewer src="https://modelviewer.dev/shared-assets/models/Astronaut.glb" ar></model-viewer>
+<button class="btn btn-ar mt-2">View in AR 📱</button>
+</div>
+</div>
+
+<!-- ITEM 10 -->
+<div class="col-md-4">
+<div class="card">
+<h5>Ice Cream</h5>
+<img class="food-img" src="https://images.unsplash.com/photo-1505253213348-ce2b377c2cba">
+<p>Cold dessert</p>
+
+<model-viewer src="https://modelviewer.dev/shared-assets/models/Astronaut.glb" ar></model-viewer>
+<button class="btn btn-ar mt-2">View in AR 📱</button>
+</div>
+</div>
 
 </div>
 
-<div class="card">
-<h3>Pizza</h3>
-
-<model-viewer
-  src="https://modelviewer.dev/shared-assets/models/Astronaut.glb"
-  ar
-  ar-modes="scene-viewer webxr quick-look"
-  camera-controls
-  auto-rotate>
-</model-viewer>
+<!-- COMBOS -->
+<div class="mt-5 p-4" style="background:#1c1c1c;border-radius:15px;">
+<h4>🔥 Recommended Combos</h4>
+<ul>
+<li>Burger + Fries + Drink</li>
+<li>Pizza + Pasta Combo</li>
+<li>Wings + Shawarma</li>
+<li>Cake + Ice Cream</li>
+</ul>
+</div>
 
 </div>
 
