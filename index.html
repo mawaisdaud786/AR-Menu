@@ -2,11 +2,10 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>AR Restaurant Menu</title>
+<title>AR Menu Working</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
-<script src="https://cdn.jsdelivr.net/npm/three@0.128/build/three.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/three@0.128/examples/jsm/webxr/ARButton.js"></script>
+<script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
 
 <style>
 body{
@@ -16,154 +15,52 @@ body{
   color:white;
 }
 
-.menu{
-  padding:20px;
-}
-
 .card{
-  background:#1c1c1c;
+  margin:20px;
   padding:15px;
-  margin:10px;
+  background:#1c1c1c;
   border-radius:12px;
 }
 
-button{
-  background:gold;
-  border:none;
-  padding:10px;
+model-viewer{
   width:100%;
-  font-weight:bold;
+  height:350px;
+  background:#000;
 }
 </style>
 </head>
 
 <body>
 
-<div class="menu">
-
-<h2>🍔 AR Restaurant Menu</h2>
+<h2 style="text-align:center;color:gold;">🍔 AR Restaurant Menu</h2>
 
 <div class="card">
 <h3>Burger</h3>
-<button onclick="startAR('burger')">View in AR 📱</button>
+
+<model-viewer
+  src="https://modelviewer.dev/shared-assets/models/Astronaut.glb"
+  ar
+  ar-modes="scene-viewer webxr quick-look"
+  camera-controls
+  auto-rotate
+  shadow-intensity="1"
+  exposure="1">
+</model-viewer>
+
 </div>
 
 <div class="card">
 <h3>Pizza</h3>
-<button onclick="startAR('pizza')">View in AR 📱</button>
+
+<model-viewer
+  src="https://modelviewer.dev/shared-assets/models/Astronaut.glb"
+  ar
+  ar-modes="scene-viewer webxr quick-look"
+  camera-controls
+  auto-rotate>
+</model-viewer>
+
 </div>
-
-<div class="card">
-<h3>Cake</h3>
-<button onclick="startAR('cake')">View in AR 📱</button>
-</div>
-
-</div>
-
-<script>
-
-let scene, camera, renderer, controller;
-let reticle;
-let currentObject;
-
-function startAR(type){
-
-// Scene
-scene = new THREE.Scene();
-
-// Camera
-camera = new THREE.PerspectiveCamera();
-
-// Renderer
-renderer = new THREE.WebGLRenderer({ antialias:true, alpha:true });
-renderer.setSize(window.innerWidth, window.innerHeight);
-renderer.xr.enabled = true;
-document.body.appendChild(renderer.domElement);
-
-// LIGHT
-const light = new THREE.HemisphereLight(0xffffff, 0xbbbbff, 1);
-scene.add(light);
-
-// AR BUTTON (THIS OPENS CAMERA)
-document.body.appendChild(
-  ARButton.createButton(renderer, { requiredFeatures: ['hit-test'] })
-);
-
-// RETICLE (table detection marker)
-reticle = new THREE.Mesh(
-  new THREE.RingGeometry(0.1, 0.12, 32).rotateX(-Math.PI/2),
-  new THREE.MeshBasicMaterial({ color: 0x00ff00 })
-);
-reticle.visible = false;
-scene.add(reticle);
-
-// OBJECTS (simple but visible “food placeholders”)
-function createObject(type){
-
-let geometry;
-let color;
-
-if(type === 'burger'){
-  geometry = new THREE.BoxGeometry(0.2,0.2,0.2);
-  color = 0xffaa00;
-}
-if(type === 'pizza'){
-  geometry = new THREE.CylinderGeometry(0.1,0.1,0.02,32);
-  color = 0xff5500;
-}
-if(type === 'cake'){
-  geometry = new THREE.BoxGeometry(0.15,0.2,0.15);
-  color = 0xff66cc;
-}
-
-const material = new THREE.MeshStandardMaterial({ color });
-
-return new THREE.Mesh(geometry, material);
-}
-
-// XR SESSION
-renderer.xr.addEventListener('sessionstart', () => {
-
-controller = renderer.xr.getController(0);
-
-controller.addEventListener('select', () => {
-
-if(reticle.visible){
-
-currentObject = createObject(type);
-currentObject.position.setFromMatrixPosition(reticle.matrix);
-scene.add(currentObject);
-
-}
-
-});
-
-scene.add(controller);
-
-});
-
-animate();
-
-function animate(){
-
-renderer.setAnimationLoop(render);
-
-}
-
-function render(){
-
-// fake placement update (basic version)
-if(reticle){
-reticle.visible = true;
-reticle.position.set(0,0,-2);
-}
-
-renderer.render(scene,camera);
-}
-
-}
-
-</script>
 
 </body>
 </html>
