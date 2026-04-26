@@ -154,11 +154,11 @@ document.write(`
 <div class="col-md-4">
 <div class="card">
 
-<h5>${item[0]}</h5>
+<h5 style="color:gold; margin-bottom:20px;" >${item[0]}</h5>
 
 <img class="food-img"
-src="https://source.unsplash.com/400x300/?food,${item[0]}">
-
+src="https://picsum.photos/seed/${encodeURIComponent(item[0])}/800/600"
+alt="${item[0]}">
 <p class="price">Rs ${item[1]}</p>
 
 <model-viewer
